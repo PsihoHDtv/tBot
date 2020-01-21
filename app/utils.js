@@ -9,12 +9,7 @@ const requestMethod = ({methodName, data}) => {
       method: 'post',
       url: `https://api.telegram.org/bot${process.env.API_KEY}/${methodName}`,
       type: 'json',
-      strictSSL: true,
-      agentClass: Agent,
-      agentOptions: {
-        socksHost: '127.0.0.1',
-        socksPort: 9050
-      },
+     
       formData: data
     }, (err, response, body) => {
 
