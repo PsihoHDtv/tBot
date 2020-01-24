@@ -45,29 +45,39 @@ const moderation = data => {
       global.lastAction = '';
     }
 
-    if (text.search(/^!t/i) >= 0) {
+    if (text.search(/^\/h/i) >= 0) {
+      const responseText = `Список доступных команд:
+      /h - выводит список команд
+      /t - записывает информацию о времени прибытия на работу
+      /s - записывает информацию о состоянии выполнения задач
+      /Привет - общение с ботом :)
+      /Удали - удаляет текущее сообщение
+      /Введите новое название чата - переименовывает чат      
+      `;
+      sendMessage({chat_id, text: responseText})
+    }
+    if (text.search(/^\/t/i) >= 0) {
         const userName = username || last_name || first_name;
         const responseText = `Принято, @${userName}`;
         sendMessage({chat_id, text: responseText})
       }
       
-    if (text.search(/^!s/i) >= 0) {
+    if (text.search(/^\/s/i) >= 0) {
         const userName = username || last_name || first_name;
         const responseText = `Принято, @${userName}`;
         sendMessage({chat_id, text: responseText})
       }
-
-    if (text.search(/^@Привет/i) >= 0) {
+    if (text.search(/^\/Привет/i) >= 0) {
       const userName = username || last_name || first_name;
       const responseText = `Привет, @${userName}`;
       sendMessage({chat_id, text: responseText})
     }
 
-    if (text.search(/^@Удали/i) >= 0) {
+    if (text.search(/^\/Удали/i) >= 0) {
       deleteMessage({chat_id, message_id})
     }
 
-    if (text.search(/^\/@updatechattitle/i) >= 0) {
+    if (text.search(/^\/Введите новое название чата/i) >= 0) {
       sendMessage({chat_id, text: 'Введите новое название чата'});
       global.lastAction = 'updatechattitle'
     }
